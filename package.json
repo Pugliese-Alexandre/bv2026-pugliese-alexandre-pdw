@@ -1,0 +1,21 @@
+{
+  "name": "devboard-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "check": "tsc --noEmit",
+    "start": "npm run build && node dist/index.js",
+    "dev": "nodemon --watch src --ext ts --exec \"npx tsc && node dist/index.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^26.4.0",
+    "nodemon": "^3.1.14",
+    "typescript": "^7.0.2"
+  }
+}
