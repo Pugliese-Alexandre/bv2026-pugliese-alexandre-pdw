@@ -1,6 +1,7 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { AppConfigModule } from '@common/config';
 import { ApplicationLifecycleLogger, LoggingModule } from '@common/logging';
+import { ApiInterceptor } from '@common/api/interceptor/api.interceptor';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -11,7 +12,7 @@ export class AppModule {
       module: AppModule,
       imports: [AppConfigModule.register(), LoggingModule],
       controllers: [AppController],
-      providers: [AppService, ApplicationLifecycleLogger],
+      providers: [AppService, ApplicationLifecycleLogger, ApiInterceptor],
     };
   }
 }
