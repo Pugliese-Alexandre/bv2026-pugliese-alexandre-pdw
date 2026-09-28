@@ -2,5 +2,12 @@ export enum ConfigKey {
   NodeEnv = 'NODE_ENV',
   AppName = 'APP_NAME',
   AppPort = 'APP_PORT',
+  AppBaseUrl = 'APP_BASE_URL',
+  AppHttpPayloadErrorCode = 'APP_HTTP_PAYLOAD_ERROR_CODE',
   LogLevel = 'LOG_LEVEL',
+  SwaggerEnabled = 'SWAGGER_ENABLED',
+  SwaggerTitle = 'SWAGGER_TITLE',
+  SwaggerDescription = 'SWAGGER_DESCRIPTION',
+  SwaggerVersion = 'SWAGGER_VERSION',
+  SwaggerPath = 'SWAGGER_PATH',
 }

@@ -3,6 +3,7 @@ import { AppLogger } from '@common/logging';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Logger } from 'nestjs-pino';
+import { configureApplication } from '@root/bootstrap/application-bootstrap';
 import { AppModule } from '@root/app.module';
 
 export const bootstrap = async (): Promise<void> => {
@@ -12,6 +13,8 @@ export const bootstrap = async (): Promise<void> => {
       bufferLogs: true,
     },
   );
+
+  configureApplication(app);
 
   app.useLogger(app.get(Logger));
   app.enableShutdownHooks();

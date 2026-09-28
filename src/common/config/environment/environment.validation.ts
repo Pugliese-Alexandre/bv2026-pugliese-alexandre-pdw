@@ -1,6 +1,10 @@
 import { z } from 'zod';
 import { AppMode, LogLevel } from '../data/enum';
 
+const booleanFromStringSchema = z
+  .enum(['true', 'false'])
+  .transform((value) => value === 'true');
+
 const appModeSchema = z
   .enum(['DEV', 'TEST', 'PROD', 'development', 'test', 'production'])
   .transform((value) => {
@@ -22,8 +26,16 @@ const appModeSchema = z
 const environmentSchema = z.object({
   APP_NAME: z.string().min(1).default('api'),
   APP_PORT: z.coerce.number().int().min(1).max(65535).default(3000),
+  APP_BASE_URL: z.string().min(1).default('api'),
+  APP_HTTP_PAYLOAD_ERROR_CODE: z.coerce.number().int().default(422),
   NODE_ENV: appModeSchema,
   LOG_LEVEL: z.nativeEnum(LogLevel).default(LogLevel.Debug),
+
+  SWAGGER_ENABLED: booleanFromStringSchema.default(true),
+  SWAGGER_TITLE: z.string().min(1).default('API'),
+  SWAGGER_DESCRIPTION: z.string().min(1).default('HTTP API'),
+  SWAGGER_VERSION: z.string().min(1).default('0.1.0'),
+  SWAGGER_PATH: z.string().min(1).default('docs'),
 });
 
 export type ValidatedEnvironment = z.infer<typeof environmentSchema>;
