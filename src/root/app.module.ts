@@ -5,13 +5,19 @@ import { ApiInterceptor, HttpExceptionFilter } from '@common/api';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from '@common/database';
+import { AccountModule } from '@core/account';
 
 @Module({})
 export class AppModule {
   static register(): DynamicModule {
     return {
       module: AppModule,
-      imports: [AppConfigModule.register(), LoggingModule, DatabaseModule],
+      imports: [
+        AppConfigModule.register(),
+        LoggingModule,
+        DatabaseModule,
+        AccountModule,
+      ],
       controllers: [AppController],
       providers: [
         AppService,
