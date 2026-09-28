@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from '@common/database';
 import { AccountModule } from '@core/account';
+import { AuthModule } from '@core/auth/auth.module';
 
 @Module({})
 export class AppModule {
@@ -17,6 +18,7 @@ export class AppModule {
         LoggingModule,
         DatabaseModule,
         AccountModule,
+        AuthModule,
       ],
       controllers: [AppController],
       providers: [
