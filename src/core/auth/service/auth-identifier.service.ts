@@ -4,6 +4,16 @@ import { EntityManager, Repository } from 'typeorm';
 import { AuthIdentifierEntity } from '../data/entity/auth-identifier.entity';
 import { AuthIdentifierType } from '../data/enum/auth-identifier-type.enum';
 
+/**
+ * Service de gestion des identifiants d'authentification.
+ *
+ * Permet de rechercher ou de créer l'identifiant associé à un compte.
+ * Actuellement, l'identifiant utilisé est l'adresse e-mail.
+ *
+ * Certaines méthodes utilisent un EntityManager afin de pouvoir être
+ * exécutées dans une transaction avec d'autres opérations en base de données.
+ */
+
 @Injectable()
 export class AuthIdentifierService {
   constructor(

@@ -12,6 +12,16 @@ import { EnvService } from '@common/config';
 import { createUlid, ULID_REGEX } from '@common/database';
 import { AuthSecurityException } from '../data/exception/auth-security.exception';
 
+/**
+ * Service de gestion cryptographique des tokens d'authentification.
+ *
+ * Gère la création et la vérification des access tokens JWT,
+ * ainsi que la génération de tokens aléatoires et de leurs empreintes.
+ *
+ * Il gère également les clés cryptographiques utilisées pour signer
+ * et vérifier les JWT, avec une configuration adaptée à l'environnement.
+ */
+
 type TrustedKeys = Record<string, string>;
 
 export type AccessTokenClaims = JwtPayload & {
@@ -47,6 +57,7 @@ export class TokenCryptoService {
     this.validateKeyMaterial(material.privateKeyPem, material.publicKeys);
   }
 
+  // Création et vérification des Access Tokens JWT
   signAccessToken(
     accountId: string,
     sessionId: string,
@@ -149,7 +160,7 @@ export class TokenCryptoService {
       throw new AuthSecurityException();
     }
   }
-
+  // Génération et empreinte des tokens
   createOpaqueToken(): string {
     return randomBytes(32).toString('base64url');
   }
@@ -158,6 +169,7 @@ export class TokenCryptoService {
     return createHmac('sha256', this.refreshPepper).update(value).digest('hex');
   }
 
+  // Chargement et validation du matériel cryptographique
   private resolvePepper(): Buffer {
     if (this.envService.refreshTokenPepper) {
       const pepper = Buffer.from(this.envService.refreshTokenPepper, 'base64');

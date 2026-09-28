@@ -2,6 +2,15 @@ import { Injectable } from '@nestjs/common';
 import * as argon2 from 'argon2';
 import { EnvService } from '@common/config';
 
+/**
+ * Service de sécurisation des mots de passe avec Argon2id.
+ *
+ * Permet de transformer un mot de passe en hash sécurisé et de vérifier
+ * ensuite si un mot de passe correspond au hash enregistré.
+ *
+ * Les paramètres d'Argon2 sont récupérés depuis la configuration de l'application.
+ */
+
 @Injectable()
 export class PasswordHasherService {
   private readonly dummyHashPromise: Promise<string>;

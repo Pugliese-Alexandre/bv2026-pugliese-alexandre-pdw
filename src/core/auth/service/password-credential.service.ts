@@ -5,6 +5,16 @@ import { EnvService } from '@common/config';
 import { PasswordCredentialEntity } from '../data/entity/password-credential.entity';
 import { PasswordHasherService } from './password-hasher.service';
 
+/**
+ * Service de gestion des identifiants de connexion par mot de passe.
+ *
+ * Permet de créer et rechercher les credentials associés à un compte.
+ * Le mot de passe est stocké sous forme de hash et jamais en clair.
+ *
+ * Gère également les tentatives de connexion échouées :
+ * compteur d'échecs, verrouillage temporaire et remise à zéro après une réussite.
+ */
+
 @Injectable()
 export class PasswordCredentialService {
   constructor(

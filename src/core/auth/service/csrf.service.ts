@@ -5,6 +5,16 @@ import { AuthSecurityException } from '../data/exception/auth-security.exception
 import { AuthSessionEntity } from '../data/entity/auth-session.entity';
 import { TokenCryptoService } from './token-crypto.service';
 
+/**
+ * Service de protection CSRF.
+ *
+ * Vérifie que le token CSRF envoyé dans la requête correspond
+ * bien à celui associé à la session de l'utilisateur.
+ *
+ * Si le token est absent, incorrect ou invalide,
+ * la requête est refusée avec une erreur 403.
+ */
+
 @Injectable()
 export class CsrfService {
   constructor(private readonly tokenCrypto: TokenCryptoService) {}

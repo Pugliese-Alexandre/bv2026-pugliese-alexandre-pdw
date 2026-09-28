@@ -2,6 +2,16 @@ import { Column, Entity, ForeignKey, Index } from 'typeorm';
 import { BasePersistenceEntity, ULID_LENGTH } from '@common/database';
 import { AccountEntity } from '@core/account/data/entity/account.entity';
 
+/**
+ * Entité représentant les informations de mot de passe d'un compte en base de données.
+ *
+ * Stocke le hash du mot de passe ainsi que les informations de sécurité
+ * associées : tentatives échouées, verrouillage, dernière utilisation
+ * et date de modification du mot de passe.
+ *
+ * Chaque compte ne peut posséder qu'un seul password credential.
+ */
+
 @Entity({ name: 'password_credential' })
 @Index('uq_password_credential_account_id', ['accountId'], { unique: true })
 @ForeignKey(() => AccountEntity, ['accountId'], ['id'], {

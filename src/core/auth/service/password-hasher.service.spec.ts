@@ -1,5 +1,13 @@
 import { PasswordHasherService } from './password-hasher.service';
 
+/**
+ * Tests du service de hashage des mots de passe.
+ *
+ * Vérifie que le mot de passe est bien hashé avec Argon2id,
+ * qu'il n'apparaît jamais en clair dans le hash et que la vérification
+ * accepte le bon mot de passe tout en refusant un mauvais.
+ */
+
 describe('PasswordHasherService', () => {
   it('uses Argon2id hashes that verify without exposing plaintext', async () => {
     const service = new PasswordHasherService({

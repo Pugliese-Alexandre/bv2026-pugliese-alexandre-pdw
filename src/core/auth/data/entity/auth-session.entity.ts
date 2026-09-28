@@ -2,6 +2,15 @@ import { Column, Entity, ForeignKey, Index } from 'typeorm';
 import { BasePersistenceEntity, ULID_LENGTH } from '@common/database';
 import { AccountEntity } from '@core/account/data/entity/account.entity';
 
+/**
+ * Entité représentant une session d'authentification en base de données.
+ *
+ * Associe une session à un compte et conserve les informations nécessaires
+ * à sa sécurité : token CSRF, expiration, dernière utilisation et révocation.
+ *
+ * Une session peut donc être suivie, expirée ou révoquée si nécessaire.
+ */
+
 @Entity({ name: 'auth_session' })
 @Index('idx_auth_session_account_id', ['accountId'])
 @ForeignKey(() => AccountEntity, ['accountId'], ['id'], {

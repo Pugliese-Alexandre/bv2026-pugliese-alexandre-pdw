@@ -13,6 +13,16 @@ import { AuthCookieService } from './service/auth-cookie.service';
 import { CsrfService } from './service/csrf.service';
 import { TokenCryptoService } from './service/token-crypto.service';
 
+/**
+ * Module d'authentification.
+ *
+ * Regroupe tout ce qui concerne l'authentification :
+ * les entités liées à la base de données et les services nécessaires
+ * à la gestion des identifiants, mots de passe, tokens, cookies et sessions.
+ *
+ * Le module permet à NestJS de connaître et d'injecter toutes ces dépendances.
+ */
+
 @Module({
   imports: [
     AccountModule,

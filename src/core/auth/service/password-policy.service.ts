@@ -3,6 +3,16 @@ import { ApiValidationError } from '@common/api';
 import { EnvService } from '@common/config';
 import { PasswordPolicyException } from '../data/exception/password-policy.exception';
 
+/**
+ * Service de validation de la politique des mots de passe.
+ *
+ * Vérifie que le mot de passe respecte les règles définies
+ * dans la configuration, notamment sa longueur minimale et maximale.
+ *
+ * Retourne les erreurs de validation ou déclenche une exception
+ * si le mot de passe ne respecte pas les règles.
+ */
+
 @Injectable()
 export class PasswordPolicyService {
   constructor(private readonly envService: EnvService) {}

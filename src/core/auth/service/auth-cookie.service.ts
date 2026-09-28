@@ -3,6 +3,16 @@ import type { CookieOptions } from 'express';
 import type { Response } from 'express';
 import { EnvService } from '@common/config';
 
+/**
+ * Service de gestion des cookies d'authentification.
+ *
+ * Centralise la création, la configuration et la suppression
+ * des cookies utilisés pour l'access token, le refresh token et le token CSRF.
+ *
+ * Adapte également la sécurité et le nom des cookies selon
+ * l'environnement (développement ou production).
+ */
+
 export type AuthCookieNames = {
   access: string;
   refresh: string;

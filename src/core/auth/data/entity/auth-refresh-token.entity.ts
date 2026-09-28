@@ -2,6 +2,16 @@ import { Column, Entity, ForeignKey, Index } from 'typeorm';
 import { BasePersistenceEntity, ULID_LENGTH } from '@common/database';
 import { AuthSessionEntity } from './auth-session.entity';
 
+/**
+ * Entité représentant les refresh tokens d'une session en base de données.
+ *
+ * Un refresh token permet d'obtenir de nouveaux tokens d'accès sans demander
+ * à l'utilisateur de se reconnecter à chaque expiration de l'access token.
+ *
+ * L'entité permet également de suivre l'expiration, l'utilisation,
+ * la révocation et le remplacement des refresh tokens.
+ */
+
 @Entity({ name: 'auth_refresh_token' })
 @Index('uq_auth_refresh_token_hash', ['tokenHash'], { unique: true })
 @Index('uq_auth_refresh_token_parent_id', ['parentId'], { unique: true })
