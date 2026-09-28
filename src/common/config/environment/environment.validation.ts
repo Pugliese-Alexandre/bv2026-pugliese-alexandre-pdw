@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { AppMode, LogLevel } from '../data/enum';
+import { AppMode, DatabaseType, LogLevel } from '../data/enum';
 
 const booleanFromStringSchema = z
   .enum(['true', 'false'])
@@ -36,6 +36,20 @@ const environmentSchema = z.object({
   SWAGGER_DESCRIPTION: z.string().min(1).default('HTTP API'),
   SWAGGER_VERSION: z.string().min(1).default('0.1.0'),
   SWAGGER_PATH: z.string().min(1).default('docs'),
+
+  DB_TYPE: z.nativeEnum(DatabaseType),
+  DB_HOST: z.string().min(1),
+  DB_PORT: z.coerce.number().int().min(1).max(65535),
+  DB_USER: z.string().min(1),
+  DB_PASSWORD: z.string().min(1),
+  DB_DATABASE: z.string().min(1),
+  DB_SYNC: booleanFromStringSchema,
+  DB_MIGRATION: booleanFromStringSchema,
+  DB_LOG: booleanFromStringSchema,
+  DB_SCHEMA: z
+    .string()
+    .regex(/^[a-zA-Z_][a-zA-Z0-9_]*$/)
+    .default('public'),
 });
 
 export type ValidatedEnvironment = z.infer<typeof environmentSchema>;

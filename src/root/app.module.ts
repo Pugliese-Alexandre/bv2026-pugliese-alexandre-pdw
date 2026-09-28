@@ -4,13 +4,14 @@ import { ApplicationLifecycleLogger, LoggingModule } from '@common/logging';
 import { ApiInterceptor, HttpExceptionFilter } from '@common/api';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { DatabaseModule } from '@common/database';
 
 @Module({})
 export class AppModule {
   static register(): DynamicModule {
     return {
       module: AppModule,
-      imports: [AppConfigModule.register(), LoggingModule],
+      imports: [AppConfigModule.register(), LoggingModule, DatabaseModule],
       controllers: [AppController],
       providers: [
         AppService,

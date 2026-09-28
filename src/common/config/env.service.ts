@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ValidatedEnvironment } from './environment/environment.validation';
-import { AppMode, ConfigKey, LogLevel } from './data/enum';
+import { AppMode, ConfigKey, DatabaseType, LogLevel } from './data/enum';
 
 @Injectable()
 export class EnvService {
@@ -62,5 +62,45 @@ export class EnvService {
 
   get<T extends keyof ValidatedEnvironment>(key: T): ValidatedEnvironment[T] {
     return this.configService.get(key, { infer: true });
+  }
+
+  get databaseType(): DatabaseType {
+    return this.get(ConfigKey.DbType);
+  }
+
+  get databaseHost(): string {
+    return this.get(ConfigKey.DbHost);
+  }
+
+  get databasePort(): number {
+    return this.get(ConfigKey.DbPort);
+  }
+
+  get databaseUser(): string {
+    return this.get(ConfigKey.DbUser);
+  }
+
+  get databasePassword(): string {
+    return this.get(ConfigKey.DbPassword);
+  }
+
+  get databaseName(): string {
+    return this.get(ConfigKey.DbDatabase);
+  }
+
+  get databaseSynchronize(): boolean {
+    return this.get(ConfigKey.DbSync);
+  }
+
+  get databaseMigrationsRun(): boolean {
+    return this.get(ConfigKey.DbMigration);
+  }
+
+  get databaseLogging(): boolean {
+    return this.get(ConfigKey.DbLog);
+  }
+
+  get databaseSchema(): string {
+    return this.get(ConfigKey.DbSchema);
   }
 }
