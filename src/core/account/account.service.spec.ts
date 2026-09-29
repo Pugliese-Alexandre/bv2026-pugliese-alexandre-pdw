@@ -4,6 +4,14 @@ import { AccountService } from './account.service';
 import { AccountEntity } from './data/entity/account.entity';
 import { AccountStatus } from './data/enum/account-status.enum';
 
+/**
+ * Tests du service de gestion des comptes.
+ *
+ * Vérifie que les informations publiques d'un compte sont correctement
+ * retournées et qu'une erreur API adaptée est générée
+ * lorsqu'un compte demandé n'existe pas.
+ */
+
 describe('AccountService', () => {
   const accountId = '01ARZ3NDEKTSV4RRFFQ69G5FAV';
 

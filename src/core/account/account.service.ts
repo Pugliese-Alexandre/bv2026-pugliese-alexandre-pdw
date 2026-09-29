@@ -6,6 +6,16 @@ import { AccountResponseDto } from './data/dto/response/account-response.dto';
 import { AccountEntity } from './data/entity/account.entity';
 import { AccountStatus } from './data/enum/account-status.enum';
 
+/**
+ * Service contenant la logique liée aux comptes utilisateurs.
+ *
+ * Permet de rechercher et créer des comptes, de retourner les informations
+ * publiques du compte connecté et de vérifier si un compte peut s'authentifier.
+ *
+ * Certaines méthodes utilisent un EntityManager afin de pouvoir être
+ * intégrées dans des transactions en base de données.
+ */
+
 @Injectable()
 export class AccountService {
   constructor(
