@@ -1,3 +1,10 @@
+/**
+ * Pipe de validation des identifiants ULID.
+ *
+ * Vérifie qu'un identifiant reçu dans une requête respecte le format ULID.
+ * Si le format est invalide, la requête est rejetée avec une erreur 400.
+ */
+
 import {
   ArgumentMetadata,
   HttpStatus,

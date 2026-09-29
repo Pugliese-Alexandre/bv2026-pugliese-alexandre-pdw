@@ -3,6 +3,13 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DataSourceOptions } from 'typeorm';
 import { AppMode, EnvService, ValidatedEnvironment } from '../../config';
 
+/**
+ * Crée la configuration TypeORM utilisée par NestJS.
+ *
+ * Récupère les paramètres de la base de données depuis EnvService
+ * et ajoute les options nécessaires au fonctionnement dans l'application.
+ */
+
 export const createNestTypeOrmOptions = (
   envService: EnvService,
 ): TypeOrmModuleOptions => {
@@ -26,6 +33,15 @@ export const createNestTypeOrmOptions = (
     retryDelay: 1000,
   };
 };
+
+/**
+ * Construit les options de connexion à PostgreSQL pour TypeORM.
+ *
+ * Définit notamment la connexion, le schéma, la synchronisation,
+ * les entités et les migrations utilisées par l'application.
+ *
+ * En production, la synchronisation automatique de la base est désactivée.
+ */
 
 export const createTypeOrmDataSourceOptions = (
   environment: Pick<

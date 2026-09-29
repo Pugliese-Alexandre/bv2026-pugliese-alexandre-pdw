@@ -23,6 +23,16 @@ const appModeSchema = z
     return value as AppMode;
   });
 
+/**
+ * Schéma de validation des variables d'environnement de l'application.
+ *
+ * Utilise Zod pour vérifier et convertir la configuration au démarrage :
+ * application, Swagger, base de données et sécurité de l'authentification.
+ *
+ * Des règles supplémentaires vérifient également la cohérence
+ * et renforcent la sécurité de la configuration en production.
+ */
+
 const environmentSchema = z
   .object({
     APP_NAME: z.string().min(1).default('api'),
@@ -179,6 +189,13 @@ const environmentSchema = z
   });
 
 export type ValidatedEnvironment = z.infer<typeof environmentSchema>;
+
+/**
+ * Valide la configuration reçue à partir du schéma Zod.
+ *
+ * Si une variable est absente ou invalide, le démarrage de l'application
+ * est interrompu avec un message indiquant les erreurs rencontrées.
+ */
 
 export const validateEnvironment = (
   config: Record<string, unknown>,

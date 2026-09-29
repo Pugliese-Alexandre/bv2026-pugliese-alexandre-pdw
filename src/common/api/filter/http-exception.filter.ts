@@ -13,6 +13,13 @@ import { ApiCodeResponse } from '../data/enum/api-code-response.enum';
 import { ApiException } from '../data/exception/api-exception';
 import { ApiResponse } from '../data/model/api-response';
 
+/**
+ * Filtre global chargé de gérer les exceptions HTTP de l'application.
+ *
+ * Transforme les erreurs dans le format standard de l'API,
+ * choisit le bon statut HTTP et enregistre l'erreur dans les logs.
+ */
+
 @Catch()
 @Injectable()
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -78,9 +85,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
       code,
       statusCode,
       method: request.method,
-      // request.path (no query string) is used rather than
-      // request.originalUrl so an unredacted query string can never leak
-      // into this log line.
+      // Utilise uniquement le chemin sans les paramètres de l'URL
+      // afin d'éviter d'enregistrer des données sensibles dans les logs.
       path: request.path,
       exceptionName,
     };

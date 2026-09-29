@@ -1,3 +1,5 @@
+// Centralise les exports du module Account pour simplifier les imports.
+
 export * from './app-logger.service';
 export * from './application-lifecycle.logger';
 export * from './data/enum/log-category.enum';

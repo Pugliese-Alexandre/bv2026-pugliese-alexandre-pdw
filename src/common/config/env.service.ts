@@ -3,6 +3,16 @@ import { ConfigService } from '@nestjs/config';
 import { ValidatedEnvironment } from './environment/environment.validation';
 import { AppMode, ConfigKey, DatabaseType, LogLevel } from './data/enum';
 
+/**
+ * Service centralisant l'accès à la configuration de l'application.
+ *
+ * Permet de récupérer de manière typée les paramètres provenant
+ * de la configuration : application, logs, Swagger, base de données
+ * et sécurité de l'authentification.
+ *
+ * Évite d'utiliser directement ConfigService dans le reste de l'application.
+ */
+
 @Injectable()
 export class EnvService {
   constructor(

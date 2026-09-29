@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
+// Représente les erreurs de validation retournées par l'API.
+
 export class ApiValidationError {
   @ApiProperty({ example: 'email' })
   property!: string;

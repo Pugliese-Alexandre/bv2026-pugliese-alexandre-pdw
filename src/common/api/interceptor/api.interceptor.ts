@@ -11,6 +11,13 @@ import { ApiResponse } from '../data/model/api-response';
 import { API_SUCCESS_CODE_METADATA_KEY } from '../decorator/api-success-code.decorator';
 import { SKIP_API_TRANSFORM_METADATA_KEY } from '../decorator/skip-api-transform.decorator';
 
+/**
+ * Intercepte les réponses de l'API pour leur donner un format commun.
+ *
+ * Ajoute automatiquement le code de succès et les données retournées,
+ * sauf pour les routes qui demandent de ne pas appliquer cette transformation.
+ */
+
 @Injectable()
 export class ApiInterceptor implements NestInterceptor {
   constructor(private readonly reflector: Reflector) {}

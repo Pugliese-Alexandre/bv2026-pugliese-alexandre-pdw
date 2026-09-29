@@ -1,3 +1,5 @@
+// Regroupe les clés utilisées pour accéder aux variables de configuration.
+
 export enum ConfigKey {
   NodeEnv = 'NODE_ENV',
   AppName = 'APP_NAME',

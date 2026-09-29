@@ -1,3 +1,5 @@
+// Regroupe les différents codes utilisés dans les réponses de l'API.
+
 export enum ApiCodeResponse {
   CommonSuccess = 'api.common.success',
   CommonError = 'api.common.error',

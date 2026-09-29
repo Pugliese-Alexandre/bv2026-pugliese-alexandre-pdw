@@ -11,6 +11,15 @@ import {
   resolveRequestId,
 } from './request-id.util';
 
+/**
+ * Module global de configuration des logs de l'application.
+ *
+ * Configure Pino pour journaliser les requêtes HTTP, attribuer un identifiant
+ * unique à chaque requête et masquer les données sensibles.
+ *
+ * Rend également AppLogger disponible dans toute l'application.
+ */
+
 @Global()
 @Module({
   imports: [
@@ -31,9 +40,10 @@ import {
             response.setHeader(REQUEST_ID_RESPONSE_HEADER, requestId);
             return requestId;
           },
-          // Keeps app logs made mid-request lean (just the requestId
-          // binding); the completion log below still gets the full req/res.
+
+          // Allège les logs intermédiaires en conservant principalement l'identifiant de la requête.
           quietReqLogger: true,
+
           customAttributeKeys: { reqId: 'requestId' },
           customProps: () => ({
             service: envService.appName,
@@ -63,10 +73,8 @@ import {
             event: 'http.request.failed',
           }),
         },
-        // nestjs-pino defaults to the legacy Express "*" wildcard, which
-        // NestJS 11 + global prefix converts (with a warning) to
-        // "/api/{*path}". Using the modern named-wildcard syntax directly
-        // avoids that LegacyRouteConverter warning entirely.
+
+        // Applique le logger HTTP à toutes les routes de l'application.
         forRoutes: [{ path: '{*path}', method: RequestMethod.ALL }],
       }),
     }),

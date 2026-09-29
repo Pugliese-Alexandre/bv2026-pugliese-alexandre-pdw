@@ -11,6 +11,11 @@ export type ApiExceptionOptions<T = unknown> = {
   logMessage?: string;
 };
 
+/**
+ * Exception personnalisée utilisée pour retourner
+ * les erreurs dans le format standard de l'API.
+ */
+
 export class ApiException<T = unknown> extends HttpException {
   readonly apiCode: string;
   readonly apiData: T | null;

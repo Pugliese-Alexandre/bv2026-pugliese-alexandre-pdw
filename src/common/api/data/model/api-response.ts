@@ -2,6 +2,8 @@ import { ApiProperty } from '@nestjs/swagger';
 import { ApiCodeResponse } from '../enum/api-code-response.enum';
 import { ApiValidationError } from './api-validation-error';
 
+// Définit le format commun des réponses de l'API, en cas de succès ou d'erreur.
+
 export class ApiResponse<T> {
   @ApiProperty({ example: ApiCodeResponse.CommonSuccess })
   code!: string;

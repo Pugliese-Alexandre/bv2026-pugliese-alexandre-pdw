@@ -3,6 +3,14 @@ import { ConfigModule } from '@nestjs/config';
 import { validateEnvironment } from './environment/environment.validation';
 import { EnvService } from './env.service';
 
+/**
+ * Module global chargé de la configuration de l'application.
+ *
+ * Initialise le système de configuration, valide les variables
+ * d'environnement au démarrage et fournit EnvService
+ * au reste de l'application.
+ */
+
 @Global()
 @Module({})
 export class AppConfigModule {

@@ -8,6 +8,7 @@ import { ApiCodeResponse } from '../data/enum/api-code-response.enum';
 import { ApiResponse } from '../data/model/api-response';
 import { ApiValidationError } from '../data/model/api-validation-error';
 
+// Documente dans Swagger le format d'une réponse API réussie.
 export const ApiEnvelopeResponse = <TModel extends Type<unknown>>(
   model: TModel,
   options: {
@@ -44,6 +45,7 @@ export const ApiEnvelopeResponse = <TModel extends Type<unknown>>(
     }),
   );
 
+// Documente dans Swagger le format d'une réponse API en erreur.
 export const ApiErrorEnvelopeResponse = (
   options: {
     status?: HttpStatus;

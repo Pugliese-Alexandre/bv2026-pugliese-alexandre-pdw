@@ -2,6 +2,13 @@ import { ArgumentMetadata } from '@nestjs/common';
 import { ApiException } from '@common/api';
 import { ParseUlidPipe } from './parse-ulid.pipe';
 
+/**
+ * Tests du pipe de validation des ULID.
+ *
+ * Vérifie qu'un ULID correctement formé est accepté
+ * et que les valeurs invalides sont rejetées avant d'atteindre la base de données.
+ */
+
 describe('ParseUlidPipe', () => {
   const pipe = new ParseUlidPipe();
   const metadata: ArgumentMetadata = { type: 'param', data: 'id' };

@@ -24,12 +24,12 @@ const headerPath = (section: 'req' | 'res', header: string): string =>
     : `${section}.headers.${header}`;
 
 /**
- * fast-redact only supports one wildcard level of nesting (`root.*.field`),
- * so this guarantees direct fields on `req.body`/`req.query` and fields one
- * level deep are censored. It cannot guarantee arbitrary deep nesting -
- * security-critical code must still avoid logging sensitive objects
- * entirely rather than relying on this list alone.
+ * Définit les données sensibles qui doivent être masquées dans les logs.
+ *
+ * Protège notamment les mots de passe, tokens, cookies et autres secrets
+ * afin qu'ils ne soient pas enregistrés accidentellement.
  */
+
 const sensitiveDataPaths = (root: string): string[] =>
   SENSITIVE_FIELD_NAMES.flatMap((field) => [
     `${root}.${field}`,

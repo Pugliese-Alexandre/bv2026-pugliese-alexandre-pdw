@@ -4,6 +4,11 @@ import { ApiCodeResponse } from '../enum/api-code-response.enum';
 import { ApiValidationError } from '../model/api-validation-error';
 import { ApiException } from './api-exception';
 
+/**
+ * Gère les erreurs de validation et les transforme
+ * dans le format d'erreur utilisé par l'API.
+ */
+
 export class ValidationException extends ApiException<null> {
   constructor(
     validationErrors: ApiValidationError[],

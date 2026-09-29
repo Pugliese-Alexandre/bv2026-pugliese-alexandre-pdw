@@ -2,6 +2,13 @@ import { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { EnvService } from '@common/config';
 
+/**
+ * Configure Swagger pour documenter et tester les routes de l'API.
+ *
+ * La documentation est activée selon la configuration de l'application
+ * et prend également en compte les cookies d'authentification.
+ */
+
 export const setupSwagger = (app: INestApplication): void => {
   const envService = app.get(EnvService);
 

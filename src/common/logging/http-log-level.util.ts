@@ -1,18 +1,22 @@
 export type HttpLogLevel = 'info' | 'warn' | 'error' | 'silent';
 
-// res.statusCode is a plain number (Node's http.ServerResponse type), so
-// these thresholds intentionally stay numeric rather than HttpStatus enum
-// members to avoid an unsafe enum-to-number comparison.
+// Seuils utilisés pour déterminer le niveau du log selon le statut HTTP.
+
 const HTTP_STATUS_BAD_REQUEST = 400;
 const HTTP_STATUS_INTERNAL_SERVER_ERROR = 500;
 
 /**
- * Liveness/readiness probes are polled frequently by infrastructure and
- * would otherwise flood normal HTTP access logs. Successful probes are
- * silenced here; failures always keep their normal warn/error level so
- * outages remain visible.
+ * Les routes de vérification de l'état de l'application sont appelées fréquemment.
+ * Leurs logs sont ignorés lorsqu'elles fonctionnent correctement afin
+ * d'éviter de surcharger inutilement les logs.
  */
+
 const HEALTH_CHECK_LOG_PATHS = new Set(['/health/live', '/health/ready']);
+
+/**
+ * Détermine le niveau du log HTTP selon le résultat de la requête :
+ * succès → info, erreur client → warn, erreur serveur → error.
+ */
 
 export const resolveHttpLogLevel = (
   path: string | undefined,
